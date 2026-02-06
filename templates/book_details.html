@@ -1,0 +1,19 @@
+<h1>{{ book_detail.title }}</h1>
+
+<p><b>Автор:</b> {{ book_detail.author }}</p>
+<p><b>Жанр:</b> {{ book_detail.genre }}</p>
+<p><b>Описание:</b> {{ book_detail.description }}</p>
+<p><b>Количество страниц:</b> {{ book_detail.pages }}</p>
+<p><b>Язык:</b> {{ book_detail.language }}</p>
+<p><b>Рейтинг:</b> {{ book_detail.rating }}</p>
+
+{% if book_detail.cover %}
+<p><b>Обложка:</b></p>
+<img src="{{ book_detail.cover.url }}" alt="{{ book_detail.title }}" width="200" height="300">
+{% endif %}
+
+{% if book_detail.file %}
+<p><b>Файл книги:</b> <a href="{{ book_detail.file.url }}">Скачать</a></p>
+{% endif %}
+
+<p><b>Дата добавления:</b> {{ book_detail.created_at|date:"d.m.Y H:i" }}</p>
