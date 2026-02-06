@@ -1,14 +1,7 @@
-<h1>Категории</h1>
+<h1>Список категорий</h1>
 
-<ul>
-    {% for category in categories %}
-        <li>
-            <a href="{% url 'categories' %}">Список категорий</a>
-                {{ category.name }}
-            </a>
-        </li>
-    {% empty %}
-        <li>Категорий нет</li>
-    {% endfor %}
-</ul>
+{% for category in categories %}
+    <p>{{ category.name }}</p>
+{% endfor %}
+
 
