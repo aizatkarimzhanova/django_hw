@@ -1,0 +1,8 @@
+<h1>Список туров</h1>
+<ul>
+{% for tour in tours %}
+    <li>
+        {{ tour.get_name_display }} - Людей на туре: {{ tour.people.count }}
+    </li>
+{% endfor %}
+</ul>

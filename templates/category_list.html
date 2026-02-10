@@ -1,0 +1,8 @@
+<h1>Категории туристов</h1>
+<ul>
+{% for cat in categories %}
+    <li>
+        {{ cat.name }} - Людей в категории: {{ cat.people.count }}
+    </li>
+{% endfor %}
+</ul>

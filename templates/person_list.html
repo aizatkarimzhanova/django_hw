@@ -1,0 +1,22 @@
+<h1>Список людей</h1>
+<ul>
+{% for person in people %}
+    <li>
+        {{ person.name }} ({{ person.age }} лет) - Тур: {{ person.tour.name if person.tour else "не выбран" }}
+        <br>
+        Категории: 
+        {% for cat in person.categories.all %}
+            {{ cat.name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+        <br>
+        Отзывы:
+        <ul>
+        {% for rev in person.reviews.all %}
+            <li>{{ rev.mark }} - {{ rev.comment }}</li>
+        {% empty %}
+            <li>Отзывов нет</li>
+        {% endfor %}
+        </ul>
+    </li>
+{% endfor %}
+</ul>
