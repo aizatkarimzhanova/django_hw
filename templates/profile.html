@@ -1,0 +1,21 @@
+<center>
+    <h1>Здравствуйте, {{ custom_user.username }}!</h1>
+
+    <p><strong>Имя:</strong> {{ custom_user.first_name }}</p>
+    <p><strong>Фамилия:</strong> {{ custom_user.last_name }}</p>
+    <p><strong>Email:</strong> {{ custom_user.email }}</p>
+    <p><strong>Телефон:</strong> {{ custom_user.phone_number }}</p>
+    <p><strong>Пол:</strong> {{ custom_user.get_gender_display }}</p>
+    <p><strong>Город:</strong> {{ custom_user.city }}</p>
+    <p><strong>Дата рождения:</strong> {{ custom_user.birthday|date:"d.m.Y" }}</p>
+    <p><strong>Образование:</strong> {{ custom_user.education }}</p>
+    <p><strong>Опыт работы:</strong> {{ custom_user.experience }}</p>
+    <p><strong>Навыки:</strong> {{ custom_user.skills }}</p>
+
+    {% if custom_user.photo %}
+        <img src="{{ custom_user.photo.url }}" width="200">
+    {% endif %}
+
+    <br><br>
+    <a href="/logout/">Выйти</a>
+</center>
