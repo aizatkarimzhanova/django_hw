@@ -6,3 +6,4 @@ urlpatterns = [
     path("tours/", views.tour_list, name="tour_list"),
     path("categories/", views.category_list, name="category_list"),
 ]
+

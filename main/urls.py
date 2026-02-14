@@ -9,5 +9,8 @@ urlpatterns = [
     path("", include("book.urls")),
     path('', include('myShop.urls')),
     path("", include("relation_db.urls")),
+    path('', include('user.urls')),
+    path('', include('captcha.urls')),
+
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
