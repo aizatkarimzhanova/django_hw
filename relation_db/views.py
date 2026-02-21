@@ -1,34 +1,34 @@
+from django.views import generic
+from . import models
 
-from django.shortcuts import render
-from . models import Person, Tour, Category
 
-def person_list(request):
-    people = Person.objects.all()
-    return render(
-        request, 
-        "relation_db/person_list.html",
-        {
-            "people": people
-            }
-        )
+class CategoryListView(generic.ListView):
+    template_name = 'category_list.html'
+    context_object_name = 'categories'
+    model = models.Category
 
-def tour_list(request):
-    tours = Tour.objects.all()
-    return render(
-        request,
-        "relation_db/tour_list.html",
-        {
-            "tours": tours
-            }
-        )
 
-def category_list(request):
-    categories = Category.objects.all()
-    return render(
-        request,
-        "relation_db/category_list.html",
-        {
-            "categories": categories
-            }
-            )
 
+class PersonListView(generic.ListView):
+    template_name = 'person_list.html'
+    context_object_name = 'persons'
+    model = models.Person
+
+
+
+class TourListView(generic.ListView):
+    template_name = 'tour_list.html'
+    context_object_name = 'tours'
+    model = models.Tour
+
+
+class RegistrationListView(generic.ListView):
+    template_name = 'registration_list.html'
+    context_object_name = 'registrations'
+    model = models.Registration
+
+
+class ReviewListView(generic.ListView):
+    template_name = 'review_list.html'
+    context_object_name = 'reviews'
+    model = models.Review

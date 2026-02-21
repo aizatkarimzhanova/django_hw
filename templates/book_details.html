@@ -1,19 +1,14 @@
-<h1>{{ book_detail.title }}</h1>
+<p>Счетчик просмотров: {{ book_id.views }}</p>
+<p><strong>Название:</strong> {{  book_id.title }}</p>
+<p>
+<img src="{{ book_id.image.url }}" alt="" width="300" height="400"
+</p>
+<p><strong>Описание:</strong> {{ book_id.description }}</p>
 
-<p><b>Автор:</b> {{ book_detail.author }}</p>
-<p><b>Жанр:</b> {{ book_detail.genre }}</p>
-<p><b>Описание:</b> {{ book_detail.description }}</p>
-<p><b>Количество страниц:</b> {{ book_detail.pages }}</p>
-<p><b>Язык:</b> {{ book_detail.language }}</p>
-<p><b>Рейтинг:</b> {{ book_detail.rating }}</p>
-
-{% if book_detail.cover %}
-<p><b>Обложка:</b></p>
-<img src="{{ book_detail.cover.url }}" alt="{{ book_detail.title }}" width="200" height="300">
-{% endif %}
-
-{% if book_detail.file %}
-<p><b>Файл книги:</b> <a href="{{ book_detail.file.url }}">Скачать</a></p>
-{% endif %}
-
-<p><b>Дата добавления:</b> {{ book_detail.created_at|date:"d.m.Y H:i" }}</p>
+<p><strong>Год создания:</strong> {{ book_id.created_data_lang }}</p>
+<p><strong>Главы:</strong> {{ book_id.chapter_count }}</p>
+<p><strong>Автор:</strong> {{ book_id.author }}</p>
+<p><strong>Страницы:</strong> {{ book_id.pages }}</p>
+<p><strong>Язык:</strong> {{ book_id.language }}</p>
+<p><strong>Издательство:</strong> {{ book_id.publisher }}</p>
+<p><strong>Добавлено:</strong> {{ book_id.created_at }}</p>

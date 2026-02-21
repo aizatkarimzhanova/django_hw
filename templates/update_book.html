@@ -1,0 +1,13 @@
+<center>
+    <h1>Добавить книги</h1>
+    <form action="{% url 'book:peresolit_knigu' object.id %}" method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Изменить</button>
+
+
+    </form>
+</center>

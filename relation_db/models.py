@@ -35,7 +35,15 @@ class Tour(models.Model):
     def __str__(self):
         return self.name
 
+class Registration(models.Model):
+    person = models.OneToOneField(Person, on_delete=models.CASCADE, related_name='registrations')
+    tour = models.OneToOneField(Tour, on_delete=models.CASCADE)
+    registered_at = models.DateTimeField(auto_now_add=True)
 
+
+    def __str__(self):
+        return f'{self.person} зарегистрирован на {self.tour}'
+    
 # Отзывы о человеке (1:many)
 class Review(models.Model):
     MARKS = (
