@@ -1,8 +1,26 @@
-{% for i in book_list %}
+<form method="GET">
+    <input type="text" name="q" placeholder="Поиск книги..." value="{{ q }}">
+    <button type="submit">Поиск</button>
+</form>
 
-<img src="{{ i.cover.url }}" alt="" width="200" height="300">
-<h1>{{ i.title }}</h1>
-<p>{{ i.author }}</p>
-<p> <a href="/book_list/{{ i.id }}/">Подробнее</a> </p>
-
+<ul>
+{% for book in page_obj %}
+    <li>{{ book.title }} — {{ book.author }}</li>
+{% empty %}
+    <li>Книг не найдено.</li>
 {% endfor %}
+</ul>
+
+<div class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page=1{% if q %}&q={{ q }}{% endif %}">Первая</a>
+        <a href="?page={{ page_obj.previous_page_number }}{% if q %}&q={{ q }}{% endif %}">Назад</a>
+    {% endif %}
+
+    <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% if q %}&q={{ q }}{% endif %}">Вперед</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}{% if q %}&q={{ q }}{% endif %}">Последняя</a>
+    {% endif %}
+</div>

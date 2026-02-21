@@ -2,7 +2,24 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from . import models
 from .forms import BookForm
+from .models import Book
+from django.core.paginator import Paginator
 
+def books_list(request):
+    query = request.GET.get("q")  
+    books = Book.objects.all()
+
+    if query:
+        books = books.filter(title__icontains=query)
+
+    paginator = Paginator(books, 4)  
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, "books_list.html", {
+        "page_obj": page_obj,
+        "q": query
+    })
 
 def citation_view(request):
     return HttpResponse("Влюбиться можно в красоту, но полюбить – лишь только душу! (Шекспир)")
@@ -10,14 +27,19 @@ def citation_view(request):
 
 # READ: список книг
 def book_list(request):
-    book_list = models.Book.objects.all()
-    return render(
-        request,
-        "book_list.html",
-        {
-            "book_list": book_list
-        }
-    )
+    query = request.GET.get('q')
+    books = Book.objects.all()
+
+    if query:
+        books = books.filter(title__icontains=query)
+
+    paginator = Paginator(books, 5)  # 5 книг на странице
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'book_list.html', {
+        'page_obj': page_obj
+    })
 
 
 # READ: детали книги
